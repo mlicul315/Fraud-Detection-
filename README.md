@@ -1,6 +1,6 @@
 # Fruad Detection for Wells Fargo
 
-[wells fargo image]
+![wells fargo image](Wells_Fargo.jpg)
 
 ## Buisness Understanding
 
@@ -27,9 +27,24 @@ The data used to create the model includes historical information of over 6 mill
 `isFlaggedFraud`
 The original dataset was a large file (almost 500mb). Therefore, I split it into 6 different chunks and then concated them together to make `fraud_df`.
 
-[insert data exloring images]
+## Data Exploring 
+
+After creating `fraud_df`, I created some visuals to explore the data. 
+
+### Transaction Type 
+
+![type](transaction_type.png)
+
+### Fraud Transactions
+
+![fraud transactions](fraud_transactions_type.png)
+
+### Transaction Amount
+
+![amount](transaction_amount.png)
 
 ## Model 
+
 After checking the correlation of features using a heatmap, I created a Linear Regression model. The target variable is the isFraud column and the remaing columns as features. Based on the heatmap and .corr(), I can see that amount, isFlaggedFraud, and step have the highest correlation.
 
 The Linear Regression model performed extremely well. 
@@ -52,7 +67,7 @@ Random Forrest:
 
 I used Gradio to create an interface for users to input information about a transaction and determine if it is fraudulent. The interface asks the user to input the type of transaction (e.g. CASH_IN, CASH_OUT, DEBIT, PAYMENT, TRANSFER), the amount of the transaction, and the old balance before the transaction. Once the user inputs this information, the model makes a prediction using a pre-trained Random Forest Classifier that was built using transaction data. The model was trained on a dataset with features such as transaction type, transaction amount, and the old balance before the transaction, with the target variable being whether the transaction was fraudulent or not. The model predicts whether the transaction is fraudulent or not, and the interface displays the prediction as output. If the prediction is "Fraud", the user is notified that the transaction is potentially fraudulent and should be investigated further. If the prediction is "No Fraud", the user is notified that the transaction is likely not fraudulent.
 
-[insert gradio picture]
+![gradio](gradio.png)
 
 ## Conclusion
 
